@@ -32,9 +32,9 @@ Enough so a link in an email explains the thesis without a meeting.
 - Avoid: Purple gradients, multi-color gradients, anything that reads “AI slop.”
 
 **Typography**
-- Headlines: Strong serif (e.g. Fraunces, Source Serif) or a distinctive sans (e.g. Satoshi, General Sans) for authority.
-- Body: Neutral, highly readable sans (e.g. IBM Plex Sans, Geist) with comfortable line-height.
-- No logo required: wordmark "Orchestrate Inc." in the chosen headline font is enough.
+- Headlines: Strong, confident sans (e.g. Manrope, Satoshi, General Sans) for authority.
+- Body: Neutral, highly readable sans with tight weight discipline. Use mono only for labels and systems cues.
+- No logo required: a precise wordmark is enough for v1.
 
 **Motion (Framer Motion or similar)**
 - **Staggered reveals:** Sections and key lines fade/slide up on scroll (ease-out, ~200–300ms). One well-orchestrated load beats many tiny animations.
@@ -45,6 +45,7 @@ Enough so a link in an email explains the thesis without a meeting.
 **Visual metaphors (optional)**
 - Simple diagram: “Portfolio → shared infrastructure → scale up/down” (icons or minimal illustration).
 - Abstract “orchestration” cue: subtle grid, nodes, or flow lines—not literal robots or chatbots.
+- **Human/agent systems canvas:** A control-surface style animation: a human core that defines the problem, agent loops that provision and validate around it, and a portfolio band that shows resources moving toward signal. Use labels around the visual so the meaning is obvious at a glance.
 - No stock photos of handshakes or data centers unless they’re genuinely high quality and on-brand.
 
 **Tech**

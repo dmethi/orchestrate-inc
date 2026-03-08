@@ -1,6 +1,6 @@
 # Orchestrate Inc.
 
-Landing page for Orchestrate Inc.—an agentic software lab that develops, launches, and scales software products through human–agent collaboration and portfolio discipline.
+Landing page for Orchestrate Inc.—an AI-native holding company that develops, launches, and scales software products through human judgment, agent systems, and disciplined portfolio allocation.
 
 **Entity:** Delaware C-Corp.
 
