@@ -1,0 +1,225 @@
+/* Orchestrate Inc. — design tokens and base styles */
+
+:root {
+  /* Dark base (navy/slate) */
+  --bg: #0f172a;
+  --bg-elevated: #1e293b;
+  --bg-muted: #334155;
+  /* Text */
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  /* Accent */
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-muted: rgba(59, 130, 246, 0.2);
+  /* Typography */
+  --font-head: "Fraunces", Georgia, serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  /* Spacing */
+  --section-padding: clamp(4rem, 10vw, 8rem);
+  --content-width: min(90vw, 68rem);
+  /* Motion */
+  --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-optical-sizing: auto;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Layout */
+.site-header {
+  padding: 1.5rem 0;
+}
+
+.header-inner {
+  width: var(--content-width);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.wordmark {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.hero {
+  padding: var(--section-padding) 0;
+}
+
+.hero-inner {
+  width: var(--content-width);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.hero h1 {
+  margin: 0 0 1rem;
+  color: var(--text);
+}
+
+.hero-tagline {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 42rem;
+}
+
+.section {
+  padding: var(--section-padding) 0;
+}
+
+.section-inner {
+  width: var(--content-width);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.section h2 {
+  margin: 0 0 1rem;
+}
+
+.section-lead {
+  margin: 0;
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  max-width: 42rem;
+}
+
+.different-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.different-item {
+  padding: 1.25rem 1.5rem;
+  background: var(--accent-muted);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.different-item strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.cta-section {
+  padding-bottom: var(--section-padding);
+}
+
+.cta-lead {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cta-section .section-inner p:last-child {
+  margin: 0;
+}
+
+.cta-link {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.cta-link:hover {
+  color: var(--accent-hover);
+}
+
+.site-footer {
+  padding: 2rem 0;
+  border-top: 1px solid var(--bg-muted);
+}
+
+.footer-inner {
+  width: var(--content-width);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.entity {
+  font-family: var(--font-head);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.entity-detail {
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}
