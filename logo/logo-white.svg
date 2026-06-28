@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="512" height="512">
+  <defs>
+    <mask id="ring-notch-w">
+      <rect width="24" height="24" fill="white"/>
+      <path d="M16.8 4.9a8.6 8.6 0 0 1 2.7 2.7" fill="none" stroke="black" stroke-width="2.6" stroke-linecap="round"/>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="8.5" fill="none" stroke="#ffffff" stroke-width="1.6" mask="url(#ring-notch-w)"/>
+  <circle cx="12" cy="12" r="2.4" fill="#ffffff"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="512" height="512">
+  <defs>
+    <!-- Cut the notch out of the ring transparently -->
+    <mask id="ring-notch">
+      <rect width="24" height="24" fill="white"/>
+      <path d="M16.8 4.9a8.6 8.6 0 0 1 2.7 2.7" fill="none" stroke="black" stroke-width="2.6" stroke-linecap="round"/>
+    </mask>
+  </defs>
+  <!-- Ring with transparent notch -->
+  <circle cx="12" cy="12" r="8.5" fill="none" stroke="#1f4d64" stroke-width="1.6" mask="url(#ring-notch)"/>
+  <!-- Center core -->
+  <circle cx="12" cy="12" r="2.4" fill="#1f4d64"/>
+</svg>
