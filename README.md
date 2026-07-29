@@ -22,10 +22,13 @@ npm run preview
 
 Output is in `dist/`. Deploy to any static host (Vercel, Netlify, GitHub Pages, etc.).
 
-## Plan and copy
+## Planning and product context
 
-See [docs/PLAN.md](docs/PLAN.md) for content strategy, thesis wording, and design notes.
+Studio Linear is the only active build queue. Read `docs/AGENTS.md` and the module
+cards for current site decisions. `docs/PLAN.md` is historical design and copy
+provenance, not an execution checklist.
 
 ## Contact
 
-Update the email in `src/App.tsx` (search for `hello@orchestrateinc.com`) to your actual inbox before going live.
+The current public contact is `inquiries@orchestrateholdings.com`. Changing the
+company name, canonical domain, or contact requires founder approval.
