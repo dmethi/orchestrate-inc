@@ -1,0 +1,48 @@
+rules:
+  - id: orchestrate.no-public-form
+    message: The static public site must not collect visitor data through forms.
+    severity: ERROR
+    languages: [typescript, javascript]
+    pattern: <form ...>...</form>
+
+  - id: orchestrate.no-unsafe-dom-html
+    message: The static site must not introduce unsafe HTML injection APIs.
+    severity: ERROR
+    languages: [typescript, javascript]
+    paths:
+      exclude: [/scripts/**]
+    pattern-either:
+      - pattern: $ELEMENT.innerHTML = $VALUE
+      - pattern: $ELEMENT.outerHTML = $VALUE
+      - pattern: $ELEMENT.insertAdjacentHTML(...)
+      - pattern: document.write(...)
+
+  - id: orchestrate.no-runtime-data-collection
+    message: The static public site must not send or collect runtime data.
+    severity: ERROR
+    languages: [typescript, javascript]
+    paths:
+      exclude: [/scripts/**]
+    pattern-either:
+      - pattern: fetch(...)
+      - pattern: navigator.sendBeacon(...)
+
+  - id: orchestrate.no-browser-storage
+    message: The static public site must not persist visitor data in browser storage.
+    severity: ERROR
+    languages: [typescript, javascript]
+    paths:
+      exclude: [/scripts/**]
+    pattern-either:
+      - pattern: localStorage.$METHOD(...)
+      - pattern: sessionStorage.$METHOD(...)
+
+  - id: orchestrate.no-runtime-environment-config
+    message: Keep the static site independent of runtime environment configuration and secrets.
+    severity: ERROR
+    languages: [typescript, javascript]
+    paths:
+      exclude: [/scripts/**]
+    pattern-either:
+      - pattern: import.meta.env.$KEY
+      - pattern: process.env.$KEY
