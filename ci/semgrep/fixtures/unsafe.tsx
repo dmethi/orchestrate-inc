@@ -1,15 +1,15 @@
 declare const element: HTMLElement;
 
-const assign = Object.assign;
+let assign = Object.assign;
 assign(element, { innerHTML: location.hash });
 
-const send = fetch;
+let send = fetch;
 send("/collect", { method: "POST" });
 
-const storage = localStorage;
+let storage = localStorage;
 storage.setItem("visitor", "tracked");
 
-const runtime = import.meta.env;
+let runtime = import.meta.env;
 const endpoint = runtime.VITE_API_URL;
 
 const create = React.createElement;

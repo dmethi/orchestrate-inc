@@ -21,9 +21,13 @@ rules:
       - pattern: 'Object.assign($ELEMENT, { ..., innerHTML: $VALUE, ... })'
       - pattern: Reflect.set($ELEMENT, "innerHTML", $VALUE)
       - patterns:
-          - pattern-inside: |
-              const $ASSIGN = Object.assign;
-              ...
+          - pattern-either:
+              - pattern-inside: |
+                  const $ASSIGN = Object.assign;
+                  ...
+              - pattern-inside: |
+                  let $ASSIGN = Object.assign;
+                  ...
           - pattern: '$ASSIGN($ELEMENT, { ..., innerHTML: $VALUE, ... })'
 
   - id: orchestrate.no-runtime-data-collection
@@ -37,9 +41,13 @@ rules:
       - pattern: navigator.sendBeacon(...)
       - pattern: new XMLHttpRequest(...)
       - patterns:
-          - pattern-inside: |
-              const $SEND = fetch;
-              ...
+          - pattern-either:
+              - pattern-inside: |
+                  const $SEND = fetch;
+                  ...
+              - pattern-inside: |
+                  let $SEND = fetch;
+                  ...
           - pattern: $SEND(...)
       - patterns:
           - pattern-inside: |
@@ -57,9 +65,13 @@ rules:
       - pattern: localStorage.$METHOD(...)
       - pattern: sessionStorage.$METHOD(...)
       - patterns:
-          - pattern-inside: |
-              const $STORAGE = localStorage;
-              ...
+          - pattern-either:
+              - pattern-inside: |
+                  const $STORAGE = localStorage;
+                  ...
+              - pattern-inside: |
+                  let $STORAGE = localStorage;
+                  ...
           - pattern: $STORAGE.$METHOD(...)
       - patterns:
           - pattern-inside: |
@@ -79,9 +91,13 @@ rules:
       - pattern: process.env.$KEY
       - pattern: process.env[$KEY]
       - patterns:
-          - pattern-inside: |
-              const $ENV = import.meta.env;
-              ...
+          - pattern-either:
+              - pattern-inside: |
+                  const $ENV = import.meta.env;
+                  ...
+              - pattern-inside: |
+                  let $ENV = import.meta.env;
+                  ...
           - pattern: $ENV.$KEY
       - patterns:
           - pattern-inside: |
