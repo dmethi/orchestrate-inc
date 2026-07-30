@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
-    "framer-motion": "^11.11.17",
+    "framer-motion": "^12.42.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
