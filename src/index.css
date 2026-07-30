@@ -12,9 +12,9 @@
   --accent: #67a7ff;
   --accent-strong: #8ec4ff;
   --accent-warm: #dce8ff;
-  --font-display: "Space Mono", "IBM Plex Mono", monospace;
-  --font-body: "Manrope", system-ui, sans-serif;
-  --font-mono: "Space Mono", "IBM Plex Mono", monospace;
+  --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --content-width: min(92vw, 80rem);
   --section-pad: clamp(3.5rem, 7vw, 5.75rem);
   --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -34,7 +34,6 @@ html[data-variant="a"] {
   --accent: #1f4d64;
   --accent-strong: #2a5164;
   --accent-warm: #4a8fa0;
-  --font-display: "Space Mono", monospace;
 }
 
 /* ─── Variant B: Dark Teal ──────────────────────────────────────────────────── */
@@ -51,7 +50,6 @@ html[data-variant="b"] {
   --accent: #5ab5cc;
   --accent-strong: #6bc4d8;
   --accent-warm: #d0eef4;
-  --font-display: "Space Mono", monospace;
 }
 
 /* ─── Variant C inherits :root ──────────────────────────────────────────────── */
@@ -115,7 +113,7 @@ h1 {
   text-wrap: balance;
 }
 
-/* Space Mono needs tighter spacing — it has built-in width */
+/* Monospace layouts need tighter spacing because their glyphs are already wide. */
 .variant:has(h1) { /* fallback handled via font-specific overrides */ }
 
 h2 {
@@ -133,27 +131,12 @@ h3 {
   font-weight: 700;
 }
 
-/* Space Mono: tighter because monospace is already wide */
 [data-font="mono"] h1,
 [data-font="mono"] h2 {
   letter-spacing: -0.04em;
 }
 
-/* Satoshi: clean geometric, bold weight */
-[data-font="satoshi"] h1,
-[data-font="general-sans"] h1 {
-  font-weight: 800;
-  letter-spacing: -0.045em;
-  line-height: 1.0;
-}
-
-[data-font="satoshi"] h2,
-[data-font="general-sans"] h2 {
-  font-weight: 700;
-  letter-spacing: -0.04em;
-}
-
-/* Satoshi Caps: uppercase + variable weight */
+/* Uppercase display treatment. */
 .font-caps h1,
 .font-caps h2,
 .font-caps h3 {
@@ -177,11 +160,6 @@ h3 {
 .font-caps h3 {
   font-size: 0.85rem;
   letter-spacing: 0.12em;
-}
-
-/* General Sans: slightly warmer, similar to Satoshi */
-[data-font="general-sans"] h1 {
-  letter-spacing: -0.04em;
 }
 
 p, li { font-size: 1rem; line-height: 1.6; color: var(--text-muted); }
@@ -325,7 +303,7 @@ html[data-variant="a"] .variant-tab-active {
 .eyebrow, .card-label, .lane-label,
 .visual-badge-label, .step-index, .portfolio-stage {
   /* Always use mono for labels regardless of display font */
-  font-family: "Space Mono", "IBM Plex Mono", monospace;
+  font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.68rem;

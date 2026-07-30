@@ -64,14 +64,7 @@ function Page() {
   const rm = useReducedMotion();
 
   return (
-    <div
-      className="variant variant-a font-caps"
-      style={{
-        "--font-display": '"Satoshi", system-ui, sans-serif',
-        "--font-body": '"Satoshi", system-ui, sans-serif',
-        "--caps-weight": 400,
-      } as React.CSSProperties}
-    >
+    <div className="variant variant-a font-caps">
       <div className="va-chrome" aria-hidden />
 
       <header className="site-header">

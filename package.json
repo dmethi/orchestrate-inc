@@ -3,10 +3,16 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
     "dev": "vite",
+    "typecheck": "tsc -b --pretty false",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:security-config": "node scripts/check-security-config.mjs",
+    "check:deployed-headers": "node scripts/check-deployed-headers.mjs https://orchestrate-inc.vercel.app"
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
