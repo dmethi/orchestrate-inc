@@ -38,6 +38,8 @@ rules:
       exclude: [/scripts/**]
     pattern-either:
       - pattern: fetch(...)
+      - pattern: window.fetch(...)
+      - pattern: globalThis.fetch(...)
       - pattern: navigator.sendBeacon(...)
       - pattern: new XMLHttpRequest(...)
       - patterns:
@@ -47,6 +49,21 @@ rules:
                   ...
               - pattern-inside: |
                   let $SEND = fetch;
+                  ...
+          - pattern: $SEND(...)
+      - patterns:
+          - pattern-either:
+              - pattern-inside: |
+                  const $SEND = window.fetch;
+                  ...
+              - pattern-inside: |
+                  let $SEND = window.fetch;
+                  ...
+              - pattern-inside: |
+                  const $SEND = globalThis.fetch;
+                  ...
+              - pattern-inside: |
+                  let $SEND = globalThis.fetch;
                   ...
           - pattern: $SEND(...)
       - patterns:
@@ -64,6 +81,10 @@ rules:
     pattern-either:
       - pattern: localStorage.$METHOD(...)
       - pattern: sessionStorage.$METHOD(...)
+      - pattern: window.localStorage.$METHOD(...)
+      - pattern: window.sessionStorage.$METHOD(...)
+      - pattern: globalThis.localStorage.$METHOD(...)
+      - pattern: globalThis.sessionStorage.$METHOD(...)
       - patterns:
           - pattern-either:
               - pattern-inside: |
@@ -71,6 +92,33 @@ rules:
                   ...
               - pattern-inside: |
                   let $STORAGE = localStorage;
+                  ...
+          - pattern: $STORAGE.$METHOD(...)
+      - patterns:
+          - pattern-either:
+              - pattern-inside: |
+                  const $STORAGE = window.localStorage;
+                  ...
+              - pattern-inside: |
+                  let $STORAGE = window.localStorage;
+                  ...
+              - pattern-inside: |
+                  const $STORAGE = window.sessionStorage;
+                  ...
+              - pattern-inside: |
+                  let $STORAGE = window.sessionStorage;
+                  ...
+              - pattern-inside: |
+                  const $STORAGE = globalThis.localStorage;
+                  ...
+              - pattern-inside: |
+                  let $STORAGE = globalThis.localStorage;
+                  ...
+              - pattern-inside: |
+                  const $STORAGE = globalThis.sessionStorage;
+                  ...
+              - pattern-inside: |
+                  let $STORAGE = globalThis.sessionStorage;
                   ...
           - pattern: $STORAGE.$METHOD(...)
       - patterns:
