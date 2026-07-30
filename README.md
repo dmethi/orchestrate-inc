@@ -17,10 +17,23 @@ Open [http://localhost:5173](http://localhost:5173).
 
 ```bash
 npm run build
+npm run check:security-config
 npm run preview
 ```
 
 Output is in `dist/`. Deploy to any static host (Vercel, Netlify, GitHub Pages, etc.).
+The production deployment currently uses Vercel; `vercel.json` is the source of truth
+for response security headers. Reproduce that header policy explicitly before moving
+the site to a different static host.
+
+## Security checks
+
+Pull requests run the build, typecheck, production dependency audit, Gitleaks,
+Semgrep, workflow hygiene checks, and CodeQL. Dependabot and a weekly OSV scan cover
+the complete lockfile, including development tooling. The scheduled workflow also runs
+`npm run check:deployed-headers` against the existing production deployment. The site
+loads its browser fonts from `/fonts` and does not make requests to Google Fonts or
+Fontshare.
 
 ## Planning and product context
 
