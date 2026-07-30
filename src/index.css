@@ -1,19 +1,3 @@
-@font-face {
-  font-family: "Satoshi";
-  src: url("/fonts/satoshi-400.ttf") format("truetype");
-  font-display: swap;
-  font-style: normal;
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: "Satoshi";
-  src: url("/fonts/satoshi-700.ttf") format("truetype");
-  font-display: swap;
-  font-style: normal;
-  font-weight: 700;
-}
-
 /* ─── Design tokens (dark blue default / Variant C) ─────────────────────────── */
 :root {
   --bg: #050d20;
@@ -28,8 +12,8 @@
   --accent: #67a7ff;
   --accent-strong: #8ec4ff;
   --accent-warm: #dce8ff;
-  --font-display: "Satoshi", system-ui, sans-serif;
-  --font-body: "Satoshi", system-ui, sans-serif;
+  --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --content-width: min(92vw, 80rem);
   --section-pad: clamp(3.5rem, 7vw, 5.75rem);
@@ -50,7 +34,6 @@ html[data-variant="a"] {
   --accent: #1f4d64;
   --accent-strong: #2a5164;
   --accent-warm: #4a8fa0;
-  --font-display: "Satoshi", system-ui, sans-serif;
 }
 
 /* ─── Variant B: Dark Teal ──────────────────────────────────────────────────── */
@@ -67,7 +50,6 @@ html[data-variant="b"] {
   --accent: #5ab5cc;
   --accent-strong: #6bc4d8;
   --accent-warm: #d0eef4;
-  --font-display: "Satoshi", system-ui, sans-serif;
 }
 
 /* ─── Variant C inherits :root ──────────────────────────────────────────────── */
@@ -131,7 +113,7 @@ h1 {
   text-wrap: balance;
 }
 
-/* Space Mono needs tighter spacing — it has built-in width */
+/* Monospace layouts need tighter spacing because their glyphs are already wide. */
 .variant:has(h1) { /* fallback handled via font-specific overrides */ }
 
 h2 {
@@ -149,27 +131,12 @@ h3 {
   font-weight: 700;
 }
 
-/* Space Mono: tighter because monospace is already wide */
 [data-font="mono"] h1,
 [data-font="mono"] h2 {
   letter-spacing: -0.04em;
 }
 
-/* Satoshi: clean geometric, bold weight */
-[data-font="satoshi"] h1,
-[data-font="general-sans"] h1 {
-  font-weight: 800;
-  letter-spacing: -0.045em;
-  line-height: 1.0;
-}
-
-[data-font="satoshi"] h2,
-[data-font="general-sans"] h2 {
-  font-weight: 700;
-  letter-spacing: -0.04em;
-}
-
-/* Satoshi Caps: uppercase + variable weight */
+/* Uppercase display treatment. */
 .font-caps h1,
 .font-caps h2,
 .font-caps h3 {
@@ -193,11 +160,6 @@ h3 {
 .font-caps h3 {
   font-size: 0.85rem;
   letter-spacing: 0.12em;
-}
-
-/* General Sans: slightly warmer, similar to Satoshi */
-[data-font="general-sans"] h1 {
-  letter-spacing: -0.04em;
 }
 
 p, li { font-size: 1rem; line-height: 1.6; color: var(--text-muted); }

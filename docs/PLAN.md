@@ -32,7 +32,7 @@ Enough so a link in an email explains the thesis without a meeting.
 - Avoid: Purple gradients, multi-color gradients, anything that reads “AI slop.”
 
 **Typography**
-- Headlines: Strong, confident sans (e.g. Manrope, Satoshi, General Sans) for authority.
+- Headlines: Strong, confident system sans-serif for authority.
 - Body: Neutral, highly readable sans with tight weight discipline. Use mono only for labels and systems cues.
 - No logo required: a precise wordmark is enough for v1.
 

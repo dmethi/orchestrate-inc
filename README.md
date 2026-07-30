@@ -32,8 +32,7 @@ Pull requests run the build, typecheck, production dependency audit, Gitleaks,
 Semgrep, workflow hygiene checks, and CodeQL. Dependabot and a weekly OSV scan cover
 the complete lockfile, including development tooling. The scheduled workflow also runs
 `npm run check:deployed-headers` against the existing production deployment. The site
-loads its browser fonts from `/fonts` and does not make requests to Google Fonts or
-Fontshare.
+uses system font stacks and does not ship font binaries or request a font service.
 
 ## Planning and product context
 

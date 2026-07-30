@@ -1,19 +1,35 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 
-const [sourceHtml, builtHtml, css, vercelConfig] = await Promise.all([
+async function listTree(path) {
+  try {
+    return await readdir(new URL(path, import.meta.url), { recursive: true });
+  } catch (error) {
+    if (error?.code === "ENOENT") return [];
+    throw error;
+  }
+}
+
+const [sourceHtml, builtHtml, css, publicEntries, logoEntries, distEntries, vercelConfig] = await Promise.all([
   readFile(new URL("../index.html", import.meta.url), "utf8"),
   readFile(new URL("../dist/index.html", import.meta.url), "utf8"),
   readFile(new URL("../src/index.css", import.meta.url), "utf8"),
+  listTree("../public"),
+  listTree("../logo"),
+  listTree("../dist"),
   readFile(new URL("../vercel.json", import.meta.url), "utf8").then(JSON.parse),
 ]);
 
-for (const html of [sourceHtml, builtHtml]) {
-  assert.doesNotMatch(html, /fonts\.googleapis\.com|fonts\.gstatic\.com|api\.fontshare\.com/);
+for (const source of [sourceHtml, builtHtml, css]) {
+  assert.doesNotMatch(source, /fonts\.googleapis\.com|fonts\.gstatic\.com|api\.fontshare\.com/i);
 }
 
-assert.match(css, /url\("\/fonts\/satoshi-400\.ttf"\)/);
-assert.match(css, /url\("\/fonts\/satoshi-700\.ttf"\)/);
+assert.doesNotMatch(css, /@font-face|Satoshi/i);
+assert.match(css, /--font-body: system-ui,/);
+assert.ok(
+  [...publicEntries, ...logoEntries, ...distEntries].every((entry) => !/\.(?:otf|ttf|woff2?)$/i.test(entry)),
+  "The public, logo, and build trees must not contain font binaries",
+);
 
 const allResponses = vercelConfig.headers.find(({ source }) => source === "/(.*)");
 assert.ok(allResponses, "Vercel must apply security headers to every response");

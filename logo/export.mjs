@@ -1,11 +1,9 @@
 import { Resvg } from "@resvg/resvg-js";
-import { readFileSync, writeFileSync } from "fs";
+import { writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
 const dir = dirname(fileURLToPath(import.meta.url));
-const font400 = readFileSync(join(dir, "satoshi-400.ttf"));
-const font700 = readFileSync(join(dir, "satoshi-700.ttf"));
 
 const TEAL  = "#1f4d64";
 const WHITE = "#ffffff";
@@ -27,7 +25,7 @@ function markSvg(color) {
 }
 
 // ─── Horizontal wordmark ──────────────────────────────────────────────────────
-// Mark scaled into a 36×36 box, text at Satoshi 700, letter-spacing -0.02em
+// Mark scaled into a 36×36 box, text in the renderer's sans-serif, letter-spacing -0.02em
 // viewBox width chosen to fit text comfortably; exported at 3200px wide.
 
 function wordmarkSvg(color) {
@@ -46,7 +44,7 @@ function wordmarkSvg(color) {
   <text
     x="50"
     y="24.5"
-    font-family="Satoshi, sans-serif"
+    font-family="sans-serif"
     font-weight="700"
     font-size="20"
     letter-spacing="-0.4"
@@ -68,7 +66,7 @@ function wordmarkCapsSvg(color) {
   <text
     x="50"
     y="24"
-    font-family="Satoshi, sans-serif"
+    font-family="sans-serif"
     font-weight="400"
     font-size="13.5"
     letter-spacing="2.2"
@@ -81,7 +79,6 @@ function wordmarkCapsSvg(color) {
 
 const opts = (width) => ({
   fitTo: { mode: "width", value: width },
-  font: { fontBuffers: [font400, font700] },
 });
 
 const exports = [
