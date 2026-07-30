@@ -1,14 +1,14 @@
 import { useEffect } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { LatticeCanvas } from "./components/LatticeCanvas";
 
 // ─── Animation config ─────────────────────────────────────────────────────────
 
-const reveal = {
+const reveal: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.42, ease: [0.215, 0.61, 0.355, 1] } },
 };
-const stagger = {
+const stagger: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.09, delayChildren: 0.06 } },
 };
