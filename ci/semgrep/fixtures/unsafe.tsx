@@ -1,8 +1,19 @@
 declare const element: HTMLElement;
-element.innerHTML = location.hash;
-fetch("/collect", { method: "POST" });
-localStorage.setItem("visitor", "tracked");
-const endpoint = import.meta.env.VITE_API_URL;
-const form = <form><input name="email" /></form>;
+
+const assign = Object.assign;
+assign(element, { innerHTML: location.hash });
+
+const send = fetch;
+send("/collect", { method: "POST" });
+
+const storage = localStorage;
+storage.setItem("visitor", "tracked");
+
+const runtime = import.meta.env;
+const endpoint = runtime.VITE_API_URL;
+
+const create = React.createElement;
+const form = create("form", null);
 void endpoint;
 void form;
+export {};

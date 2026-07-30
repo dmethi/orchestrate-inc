@@ -3,7 +3,9 @@ rules:
     message: The static public site must not collect visitor data through forms.
     severity: ERROR
     languages: [typescript, javascript]
-    pattern: <form ...>...</form>
+    pattern-either:
+      - pattern: <form ...>...</form>
+      - pattern: $FACTORY("form", ...)
 
   - id: orchestrate.no-unsafe-dom-html
     message: The static site must not introduce unsafe HTML injection APIs.
@@ -16,6 +18,13 @@ rules:
       - pattern: $ELEMENT.outerHTML = $VALUE
       - pattern: $ELEMENT.insertAdjacentHTML(...)
       - pattern: document.write(...)
+      - pattern: 'Object.assign($ELEMENT, { ..., innerHTML: $VALUE, ... })'
+      - pattern: Reflect.set($ELEMENT, "innerHTML", $VALUE)
+      - patterns:
+          - pattern-inside: |
+              const $ASSIGN = Object.assign;
+              ...
+          - pattern: '$ASSIGN($ELEMENT, { ..., innerHTML: $VALUE, ... })'
 
   - id: orchestrate.no-runtime-data-collection
     message: The static public site must not send or collect runtime data.
@@ -26,6 +35,17 @@ rules:
     pattern-either:
       - pattern: fetch(...)
       - pattern: navigator.sendBeacon(...)
+      - pattern: new XMLHttpRequest(...)
+      - patterns:
+          - pattern-inside: |
+              const $SEND = fetch;
+              ...
+          - pattern: $SEND(...)
+      - patterns:
+          - pattern-inside: |
+              const $SEND = navigator.sendBeacon;
+              ...
+          - pattern: $SEND(...)
 
   - id: orchestrate.no-browser-storage
     message: The static public site must not persist visitor data in browser storage.
@@ -36,6 +56,16 @@ rules:
     pattern-either:
       - pattern: localStorage.$METHOD(...)
       - pattern: sessionStorage.$METHOD(...)
+      - patterns:
+          - pattern-inside: |
+              const $STORAGE = localStorage;
+              ...
+          - pattern: $STORAGE.$METHOD(...)
+      - patterns:
+          - pattern-inside: |
+              const $STORAGE = sessionStorage;
+              ...
+          - pattern: $STORAGE.$METHOD(...)
 
   - id: orchestrate.no-runtime-environment-config
     message: Keep the static site independent of runtime environment configuration and secrets.
@@ -45,4 +75,18 @@ rules:
       exclude: [/scripts/**]
     pattern-either:
       - pattern: import.meta.env.$KEY
+      - pattern: import.meta.env[$KEY]
       - pattern: process.env.$KEY
+      - pattern: process.env[$KEY]
+      - patterns:
+          - pattern-inside: |
+              const $ENV = import.meta.env;
+              ...
+          - pattern: $ENV.$KEY
+      - patterns:
+          - pattern-inside: |
+              const $ENV = process.env;
+              ...
+          - pattern: $ENV.$KEY
+      - pattern: const { $KEY } = import.meta.env
+      - pattern: const { $KEY } = process.env
