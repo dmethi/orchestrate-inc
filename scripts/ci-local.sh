@@ -91,8 +91,10 @@ job semgrep semgrep_rules
 job install npm ci
 if [[ " ${passed[*]} " == *" install "* ]]; then
   job typecheck npm run typecheck
+  rm -rf dist
   job build npm run build
-  job security-config npm run check:security-config
+  # Reads dist/, so it only means something after a passing build.
+  [[ " ${passed[*]} " == *" build "* ]] && job security-config npm run check:security-config
   job audit npm audit --omit=dev --audit-level=high
 fi
 if $full; then
