@@ -28,10 +28,11 @@ the site to a different static host.
 
 ## Security checks
 
-Pull requests run the build, typecheck, production dependency audit, Gitleaks,
-Semgrep, and workflow hygiene checks. Dependabot and a weekly OSV scan cover
-the complete lockfile, including development tooling. The scheduled workflow also runs
-`npm run check:deployed-headers` against the existing production deployment. The site
+CI runs locally on the Mac Studio, not in GitHub Actions. `scripts/ci-local.sh`
+runs Gitleaks, Semgrep, typecheck, build, the security-config check and the
+production dependency audit. `scripts/ci-local.sh --full` adds the old weekly scans:
+OSV over the complete lockfile, including development tooling, and
+`npm run check:deployed-headers` against the production deployment. The site
 uses system font stacks and does not ship font binaries or request a font service.
 
 ## Planning and product context
